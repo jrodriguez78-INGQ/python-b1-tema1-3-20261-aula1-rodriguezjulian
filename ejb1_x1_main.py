@@ -49,69 +49,84 @@ from util_package import text_manager
 from util_package.text_manager import TEXT, is_newline, is_space, remove_punctuation_marks
 
 def find_largest_word(text):
- largest_word = ""
- word = ""
- for character in text:
-  if is_space(character) or is_newline(character):
-   word = remove_punctuation_marks(word)
-   if len(word) > len(largest_word):
-    largest_word = word
-   
-   word = ""
-  else:
-   word += character
- word = remove_punctuation_marks(word)
- if len(word) > len(largest_word):
-  largest_word = word
- return largest_word  
-    pass                
+    largest_word = ""
+    word = ""
+
+    for character in text:
+        if is_space(character) or is_newline(character):
+            word = remove_punctuation_marks(word)
+
+            if len(word) > len(largest_word):
+                largest_word = word
+
+            word = ""
+        else:
+            word += character
+
+    word = remove_punctuation_marks(word)
+
+    if len(word) > len(largest_word):
+        largest_word = word
+
+    return largest_word
+
 
 def is_palindrome_word(word):
- word = remove_punctuation_marks(word)
- word = word.lower()
- if len(word) <= 1:
-  return True
- if word[0] != word[-1]:
-  return False
- return is_palindrome_word(word[1:-1])    
-    pass
-    
+    word = remove_punctuation_marks(word)
+    word = word.lower()
+
+    if len(word) <= 1:
+        return True
+
+    if word[0] != word[-1]:
+        return False
+
+    return is_palindrome_word(word[1:-1])
+
+
 def count_palindrome_words(text):
- count = 0
- word = ""
- for character in text:
-  if is_space(character) or is_newline(character):
-   word = remove_punctuation_marks(word)
-   if word != "" and is_palindrome_word(word):
-    count += 1
-  else:       
-   word += character
- 
- word = remove_punctuation_marks(word)
- if word != "" and is_palindrome_word(word):
-  count += 1
- return count
-    pass
+    count = 0
+    word = ""
+
+    for character in text:
+        if is_space(character) or is_newline(character):
+            word = remove_punctuation_marks(word)
+
+            if word != "" and is_palindrome_word(word):
+                count += 1
+            word = ""
+        else:
+            word += character
+
+    word = remove_punctuation_marks(word)
+
+    if word != "" and is_palindrome_word(word):
+        count += 1
+
+    return count
+
 
 def find_size_largest_sentence(text, filter):
- largest_sentence = ""
- sentence = ""
- for character in text:
-  if is_newline(character):
-   if filter in sentence:
-    if len(sentence) > len(largest_sentence):
-     largest_sentence = sentence
-   sentence = ""
-  else:
-   sentence += character
- if filter in sentence:
-  if len(sentence) > len(largest_sentence):
-   largest_sentence = sentence
- 
-if largest_sentence == "":
-  raise ValueError("No sentence contains the filter")
- return len(largest_sentence)   
-      pass
+    largest_sentence = ""
+    sentence = ""
+
+    for character in text:
+        if is_newline(character):
+            if filter in sentence:
+                if len(sentence) > len(largest_sentence):
+                    largest_sentence = sentence
+            sentence = ""
+        else:
+            sentence += character
+
+    if filter in sentence:
+        if len(sentence) > len(largest_sentence):
+            largest_sentence = sentence
+
+    if largest_sentence == "":
+        raise ValueError("No sentence contains the filter")
+
+    return len(largest_sentence)
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
 print("La palabra mas larga es:", find_largest_word(TEXT))
