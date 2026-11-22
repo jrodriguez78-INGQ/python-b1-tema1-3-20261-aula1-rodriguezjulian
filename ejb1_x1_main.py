@@ -128,7 +128,8 @@ def find_size_largest_sentence(text, filter):
 
     return len(largest_sentence)
 
-# Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
+
+#Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
 print("La palabra mas larga es:", find_largest_word(TEXT))
 print("'aa' es un palíndromo su resultado es:", is_palindrome_word("aa"))
 print("'abx' no un palíndromo su resultado es:", is_palindrome_word("abx"))
